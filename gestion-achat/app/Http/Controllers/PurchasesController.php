@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Products;
 use App\Models\Purchases;
+use App\Models\Stocks;
 use App\Models\Supplier;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
@@ -26,7 +29,15 @@ class PurchasesController extends Controller
     {
         // Récupérer les fournisseurs pour le formulaire d'importation
         $suppliers = Supplier::all();
-        return view('purchases.import', compact('suppliers'));
+        return view('purchases.import', [
+        'suppliers' => Supplier::withCount('products')->get(),
+        'products' => Products::with(['supplier', 'stock'])->paginate(10),
+        'productsCount' => Products::count(),
+        'suppliersCount' => Supplier::count(),
+        'averageStock' => Stocks::average('quantity'),
+        'averageMargin' => Products::average('margin_percent'),
+        'lastSync' => Cache::get('last_api_sync')
+    ]);
     }
 
     public function import(Request $request)
