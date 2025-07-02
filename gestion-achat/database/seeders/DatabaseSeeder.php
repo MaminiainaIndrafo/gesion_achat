@@ -28,7 +28,7 @@ class DatabaseSeeder extends Seeder
 
         // Condition d'achat pour ce fournisseur
         PurchaseCondition::create([
-            'supplier_id' => $supplier->id,
+            'supplier_id' => $supplier->supplier_id,
             'min_amount' => 1000,
             'discount_percent' => 5,
             'payment_terms' => '30 jours fin de mois'
@@ -52,19 +52,19 @@ class DatabaseSeeder extends Seeder
 
         foreach ($products as $productData) {
             $product = Products::create(array_merge($productData, [
-                'supplier_id' => $supplier->id
+                'supplier_id' => $supplier->supplier_id
             ]));
 
             // Création du stock
             Stocks::create([
-                'product_id' => $product->id,
+                'product_id' => $product->product_id,
                 'quantity' => 100,
                 'alert_threshold' => 10
             ]);
 
             // Création d'achats
             Purchases::create([
-                'product_id' => $product->id,
+                'product_id' => $product->product_id,
                 'quantity' => 50,
                 'unit_price' => $product->purchase_price,
                 'purchase_date' => now()->subDays(30),

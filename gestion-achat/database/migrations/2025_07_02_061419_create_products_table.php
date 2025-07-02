@@ -21,6 +21,7 @@ return new class extends Migration
             $table->decimal('selling_price', 11, 5)->nullable(); // Prix de vente conseillé
             $table->decimal('shopify_price', 11, 5)->nullable(); // Prix Shopify
             $table->string('shopify_id')->nullable(); // ID du produit dans Shopify
+            $table->timestamps();
         });
     }
 
