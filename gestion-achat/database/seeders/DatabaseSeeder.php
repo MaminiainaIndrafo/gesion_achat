@@ -66,6 +66,7 @@ class DatabaseSeeder extends Seeder
             Purchases::create([
                 'product_id' => $product->product_id,
                 'quantity' => 50,
+                'total_price' => $product->purchase_price * 50, // Prix total HT
                 'unit_price' => $product->purchase_price,
                 'purchase_date' => now()->subDays(30),
                 'invoice_number' => 'FAC-' . now()->year . '-001'
