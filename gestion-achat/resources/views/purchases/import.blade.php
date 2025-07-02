@@ -24,7 +24,7 @@
                     <label for="csv_file" class="block text-sm font-medium text-gray-700 mb-1">Fichier CSV</label>
                     <input type="file" name="csv_file" id="csv_file" class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100" required>
                 </div>
-                <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-md transition duration-200">Importer</button>
+                <button style="background-color: gray;" type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-md transition duration-200">Importer</button>
             </form>
         </div>
 
@@ -135,10 +135,7 @@
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $supplier->contact_email }}</td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $supplier->contact_phone }}</td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $supplier->products_count }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            <a href="{{ route('suppliers.show', $supplier->supplier_id) }}" class="text-blue-600 hover:text-blue-900 mr-3">Voir</a>
-                            <a href="{{ route('suppliers.edit', $supplier->supplier_id) }}" class="text-indigo-600 hover:text-indigo-900">Éditer</a>
-                        </td>
+                        
                     </tr>
                     @endforeach
                 </tbody>

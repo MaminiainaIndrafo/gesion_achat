@@ -17,7 +17,7 @@ class PurchasesController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function sync()
     {
         //
     }
