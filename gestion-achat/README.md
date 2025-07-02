@@ -59,3 +59,12 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+
+## Documentation :
+### Commande for create Model Migration Ressource conroller
+php artisan make:Model Supplier -mrc
+php artisan make:Model Products -mrc
+php artisan make:Model Purchases -mrc
+php artisan make:Model Stocks -mrc
+php artisan make:Model PurchaseCondition  -mrc
