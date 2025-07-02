@@ -97,3 +97,8 @@ php artisan storage:link
 
 ## Worker Continu
 php artisan schedule:work
+
+
+## Partie 3
+### Installation package shopify
+composer require shopify/shopify-api
