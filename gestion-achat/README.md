@@ -47,9 +47,12 @@
 
 ### Étapes
 1. Cloner le dépôt :
-```bash
+```bash```
 git clone https://github.com/votreuser/gestion-achat.git
 cd gestion-achat
+
+##Url off dashbord
+http://127.0.0.1:8000/purchases/import
 
 
 ## Package for manipulate CSV
