@@ -30,4 +30,14 @@ class Products extends Model
     {
         return $this->belongsTo(Supplier::class, 'supplier_id', 'supplier_id');
     }
+
+    public function purchases()
+    {
+        return $this->hasMany(Purchases::class);
+    }
+
+    public function stock()
+    {
+        return $this->hasOne(Stocks::class, 'product_id', 'product_id');
+    }
 }

@@ -60,6 +60,8 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 
+## Package for manipulate CSV
+composer require league/csv
 
 ## Documentation :
 ### Commande for create Model Migration Ressource conroller
@@ -76,5 +78,16 @@ php artisan migrate
 ### Creat date seeder
 php artisan make:seeder DatabaseSeeder
 
-### Exécution du Seeder
+### Execute seeder 
 php artisan db:seed
+
+
+### create commande for import csv using terminal
+php artisan make:command ImportPurchases
+### Import de commandes fournisseurs au format CSV
+php artisan app:import-purchases storage/app/public/donnee_test_gestion_achat --supplier_id=1
+
+### create commande for export csv using terminal
+php artisan make:command ExportPurchasesReport
+### Export d’un CSV “rapport d’achats” (marges & quantités)
+php artisan app:export-purchases-report --date_from=2024-01-01 --date_to=2025-12-31
