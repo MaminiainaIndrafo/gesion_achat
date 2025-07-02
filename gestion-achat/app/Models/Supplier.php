@@ -23,4 +23,9 @@ class Supplier extends Model
         'api_key'
     ];
     
+    public function products()
+    {
+        return $this->hasMany(Products::class, 'supplier_id', 'supplier_id');
+    }
+
 }

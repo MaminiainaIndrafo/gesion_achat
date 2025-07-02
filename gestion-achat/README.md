@@ -1,24 +1,54 @@
-# Gestion des Achats Fournisseurs - Outil Interne
+# Système de Gestion des Achats Fournisseurs
 
-## 📝 Description
-Outil interne pour la gestion des achats fournisseurs avec intégration Shopify, permettant :
-- Import/Export CSV des commandes
-- Calcul automatique des marges
-- Synchronisation des stocks
-- Intégration avec l'API Shopify
+![Dashboard Preview](docs/dashboard-preview.png) *(Exemple à remplacer par votre capture d'écran)*
+
+## 📋 Table des Matières
+- [Fonctionnalités](#-fonctionnalités)
+- [Installation](#-installation)
+- [Configuration](#-configuration)
+- [Utilisation](#-utilisation)
+- [Structure Technique](#-structure-technique)
+- [Exemples de Données](#-exemples-de-données)
+- [API Endpoints](#-api-endpoints)
+- [Tests](#-tests)
+- [Déploiement](#-déploiement)
+- [License](#-license)
+
+## 🌟 Fonctionnalités
+
+### A. Modélisation & Backend
+- **Gestion des fournisseurs** : CRUD complet
+- **Import/Export CSV** :
+  - Import des commandes fournisseurs
+  - Export des rapports d'achats avec marges
+- **Calcul automatique** des marges unitaires et globales
+- **Gestion des stocks** : Mise à jour automatique
+
+### B. Automatisation
+- **Synchronisation API** quotidienne
+- **Planification des tâches** via Laravel Scheduler
+
+### C. Intégration Shopify
+- Récupération des prix de vente
+- Calcul des marges (fournisseur vs Shopify)
+
+### D. Tableau de Bord
+- Visualisation des produits/fournisseurs
+- Rapports des marges et stocks
+- Actions manuelles (import/export, sync)
 
 ## 🛠 Installation
 
 ### Prérequis
 - PHP 8.1+
-- Composer
-- MySQL
-- Node.js (pour les assets frontend)
+- Composer 2.0+
+- MySQL 5.7+
+- Node.js 16+
 
-### Configuration
+### Étapes
 1. Cloner le dépôt :
 ```bash
-git clone [votre-repo-url]
+git clone https://github.com/votreuser/gestion-achat.git
 cd gestion-achat
 
 
