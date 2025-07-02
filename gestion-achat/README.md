@@ -94,3 +94,6 @@ php artisan app:export-purchases-report --date_from=2024-01-01 --date_to=2025-12
 
 ## Link storage for store file
 php artisan storage:link
+
+## Worker Continu
+php artisan schedule:work
