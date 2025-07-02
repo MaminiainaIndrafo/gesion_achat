@@ -23,8 +23,39 @@ class Products extends Model
         'purchase_price',
         'selling_price',
         'shopify_price',
-        'shopify_id'
+        'shopify_id',
+        'margin',
+        'margin_percent'
     ];
+
+    // Ajoutez ces méthodes
+    public function calculateMargin()
+    {
+        $sellingPrice = $this->shopify_price ?? $this->selling_price;
+
+        if (!$sellingPrice) return null;
+
+        return [
+            'unit' => $sellingPrice - $this->purchase_price,
+            'percent' => $this->purchase_price > 0
+                ? (($sellingPrice - $this->purchase_price) / $this->purchase_price) * 100
+                : null
+        ];
+    }
+
+    public function updateMargin()
+    {
+        $margin = $this->calculateMargin();
+
+        if ($margin) {
+            $this->update([
+                'margin' => $margin['unit'],
+                'margin_percent' => $margin['percent']
+            ]);
+        }
+
+        return $this;
+    }
 
     public function supplier()
     {

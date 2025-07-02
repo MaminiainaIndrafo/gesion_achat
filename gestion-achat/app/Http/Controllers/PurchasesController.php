@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Purchases;
+use App\Models\Supplier;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Storage;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class PurchasesController extends Controller
 {
@@ -13,6 +17,66 @@ class PurchasesController extends Controller
     public function index()
     {
         //
+    }
+
+    /**
+     * Display a listing of the resource.
+     */
+    public function importForm()
+    {
+        // Récupérer les fournisseurs pour le formulaire d'importation
+        $suppliers = Supplier::all();
+        return view('purchases.import', compact('suppliers'));
+    }
+
+    public function import(Request $request)
+    {
+        $request->validate([
+            'csv_file' => 'required|file|mimes:csv,txt',
+            'supplier_id' => 'required|exists:suppliers,supplier_id'
+        ]);
+
+        $uploadedFile = $request->file('csv_file');
+        $filename = uniqid() . '.' . $uploadedFile->getClientOriginalExtension();
+        $path = $uploadedFile->storeAs('temp', $filename);
+
+        $fullPath = storage_path("app/private/{$path}");
+        $path = str_replace("\\", "/", $fullPath);
+
+        Artisan::call('app:import-purchases', [
+            'file' => $path,
+            '--supplier_id' => $request->supplier_id
+        ]);
+
+        $output = Artisan::output();
+
+        // nettoyage
+        Storage::delete($path);
+
+        return back()
+            ->with('success', 'Import terminé avec succès!')
+            ->with('console_output', $output);
+    }
+
+
+
+    public function export(Request $request): BinaryFileResponse
+    {
+        $request->validate([
+            'date_from' => 'required|date',
+            'date_to' => 'required|date|after_or_equal:date_from'
+        ]);
+
+        Artisan::call('app:export-purchases-report', [
+            '--date_from' => $request->date_from,
+            '--date_to' => $request->date_to
+        ]);
+
+        $output = trim(Artisan::output());
+        $filePath = str_replace('Fichier disponible: ', '', $output);
+
+        return response()->download(storage_path("app/{$filePath}"))
+            ->deleteFileAfterSend();
     }
 
     /**
