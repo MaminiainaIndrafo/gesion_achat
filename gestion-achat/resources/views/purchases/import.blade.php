@@ -27,7 +27,7 @@
 
         <div class="flex items-center gap-4">
             <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Importer</button>
-            <a href="{{ asset('storage/import_example.csv') }}" class="text-blue-500 hover:underline">Télécharger un exemple</a>
+            <a href="{{ asset('storage/donnee_test_gestion_achat.csv') }}" class="text-blue-500 hover:underline">Télécharger un exemple</a>
         </div>
     </form>
 

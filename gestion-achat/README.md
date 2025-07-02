@@ -91,3 +91,6 @@ php artisan app:import-purchases storage/app/public/donnee_test_gestion_achat --
 php artisan make:command ExportPurchasesReport
 ### Export d’un CSV “rapport d’achats” (marges & quantités)
 php artisan app:export-purchases-report --date_from=2024-01-01 --date_to=2025-12-31
+
+## Link storage for store file
+php artisan storage:link
