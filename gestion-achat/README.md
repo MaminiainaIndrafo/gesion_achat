@@ -68,3 +68,13 @@ php artisan make:Model Products -mrc
 php artisan make:Model Purchases -mrc
 php artisan make:Model Stocks -mrc
 php artisan make:Model PurchaseCondition  -mrc
+
+
+### Migration of database
+php artisan migrate
+
+### Creat date seeder
+php artisan make:seeder DatabaseSeeder
+
+### Exécution du Seeder
+php artisan db:seed

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id('product_id');
             $table->foreignId('supplier_id')->constrained()->onDelete('cascade');
-            $table->string('reference')->unique(); // Référence fournisseur
+            $table->string('reference', 100)->unique(); // Référence fournisseur
             $table->string('name');
             $table->text('description')->nullable();
             $table->decimal('purchase_price', 11, 5); // Prix d'achat HT
